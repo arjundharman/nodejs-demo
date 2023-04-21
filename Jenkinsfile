@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     environment {
-    DOCKERHUB_CREDENTIALS = credentials('valaxy-dockerhub')
+    DOCKERHUB_CREDENTIALS = credentials('arjundharman-dockerhub')
     }
     stages { 
         stage('SCM Checkout') {
@@ -12,7 +12,7 @@ pipeline {
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t valaxy/nodeapp:$BUILD_NUMBER .'
+                sh 'docker build -t arjundharman/nodeapp:$BUILD_NUMBER .'
             }
         }
         stage('login to dockerhub') {
@@ -22,7 +22,7 @@ pipeline {
         }
         stage('push image') {
             steps{
-                sh 'docker push valaxy/nodeapp:$BUILD_NUMBER'
+                sh 'docker push arjundharman/nodeapp:$BUILD_NUMBER'
             }
         }
 }
